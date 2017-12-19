@@ -87,3 +87,5 @@ Roots of all types
     class RationalWrapper(val rational: Rational) extends AnyVal {
         def +(rational: Rational): Rational = ???
     }
+
+Note: the three question mark operator ??? denotes nothing and the compiler will understand it as such
