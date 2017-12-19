@@ -1,0 +1,89 @@
+Single inheritance
+
+Example: class Cat extends Animal or class Dog extends Animal
+by default all classes extend Scala.anyRef which is equivalent to java.lang.Object
+
+Arguments in constructor
+
+Arguments in constructors should be specified when extending that class
+
+Example:
+    class Animal (val name: String)
+    class Dog (name: String) extends Animal(name)
+
+Access Modifiers
+public (default), protected, and private
+
+Overriding
+* Inherited members can be overriden by using the override keyword
+    class Animal {
+     def name: String = "not specified"
+     def legs: Int = 0
+    }
+    class Dog(override val name: String) extends Animal {
+        override def legs = 4
+    }
+
+Staying DRY (Don't repeat yourself) in Inheritance
+* one can use super to access fields/methods defined in the parent class
+
+super.setupConnectionInfo() - setupConnectionInfo is a method in a base class that handles setting up a connection
+to a common database used by all classes in an application
+
+Preventing extension
+* Use the final keyword
+Example:
+    class Animal
+    final class Dog extends Animal
+    class Husky extends Dog - compiler complains 'illegal inheritance from final class Dog'
+
+    class Animal
+    class Dog extends Animal {
+        final val legs: Int = 4 //NOTE - val is already immutable so final is not the same as final in Java
+                                // rather - final denotes that this cannot be overriden in a subclass
+    }
+
+ Another way to prevent extension is by sealing inheritance
+ Example:
+    Animal.scala
+    class Animal
+
+    Dogs.scala  //NOTE - all dogs are grouped in the same source file
+    sealed Class extends Animal
+    class Doberman extends Dog
+    class Husky extends Dog
+
+    //MutantAnimals.scala   //NOTE - the compiler will complain of 'illegal inheritance from sealed class Dog'
+    class MutantDog extends Dog
+
+
+Abstract classes are similar to Java's abstract classes
+Implementations of attributes are delegated to child classes
+Example:
+    abstract class Animal {
+        def name: String
+    }
+
+    abstract class Dog(override val name: String) extends Animal {
+        def breed: String
+    }
+
+    class Husky(name: String) extends Dog(name) {
+        override val breed="husky"
+    }
+
+TRAITS
+Used to define types by specifying method signatures (similar to Java interface classes)
+But, they are different from Java in that they are flexible and can have default implementations
+
+Scala's Type Hierarchy
+Scala.Any --> Scala.AnyRef (similar to java.lang.Object) (String, List, Set, etc) --> Scala.Null --> Scala.Nothing
+Scala.Any --> Scala.AnyVal (Int, Unit (similar to Void), Boolean, Float, etc)  --> Scala.Nothing
+
+Roots of all types
+* AnyRef is the "father" of all reference types
+    class Rational extends AnyRef
+* AnyVal is the "father" of all value types
+    class RationalWrapper(val rational: Rational) extends AnyVal {
+        def +(rational: Rational): Rational = ???
+    }
