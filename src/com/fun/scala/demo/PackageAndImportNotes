@@ -1,0 +1,20 @@
+The package declaration must be at the top of a file (just like Java) and only comments are allowed above it
+
+One package object allowed per package and can help you place common/utility code within this file without declaring a class.
+Code within the package object is then visible to all members of the package.
+Imports
+
+To import all members of a package use an underscore.
+
+Example - import com.fun.scala.demo._ (different than Java where you use an asterisk)
+
+Cool stuff with import statements - you can rename classes to avoid collision
+
+Example - import java.util.{Date => UtilDate}
+          import java.sql.{Date => SqlDate}
+
+Default imports - In every Scala source file, the following packages/objects are implicity imported:
+* package java.lang
+* package scala
+* object scala.Predef
+
