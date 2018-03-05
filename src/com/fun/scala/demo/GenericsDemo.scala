@@ -3,9 +3,9 @@ package com.fun.scala.demo
 object GenericsDemo extends App {
 
   def genericsExample = {
-    val list: List[String] = List("hello")
+    //val list: List[String] = List("hellooo")
 
-    println(list.toString())
+    //println(list.toString())
   }
 
   def varianceProblem = {

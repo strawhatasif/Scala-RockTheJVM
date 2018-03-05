@@ -1,4 +1,4 @@
-package com.fun.scala.main
+package com.fun.scala.filesystem
 
 import java.util.Scanner
 
@@ -14,7 +14,9 @@ object FileSystem extends App {
   //show the command line, fetch command, and then
   //change state to reflect new command
 
-  while(true)
+  while(true) {
     state.show
-    state = Command.sourceString(scanner.nextLine()).apply(state)
+    val input = scanner.nextLine()
+    state = Command.from(input).apply(state)
+  }
 }
