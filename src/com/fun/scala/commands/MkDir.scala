@@ -29,6 +29,8 @@ class MkDir(name: String) extends Command {
     def updateStructure(currentDirectory: Directory, paths: List[String], newDirectoryEntry: DirEntry) : Directory = {
       if (paths.isEmpty) currentDirectory.addEntry(newDirectoryEntry)
       else {
+        println(paths)
+        println(currentDirectory.findEntry(paths.head).asDirectory)
         val oldEntry = currentDirectory.findEntry(paths.head).asDirectory
         currentDirectory.replaceEntry(oldEntry.name, updateStructure(oldEntry, paths.tail, newDirectoryEntry))
       }

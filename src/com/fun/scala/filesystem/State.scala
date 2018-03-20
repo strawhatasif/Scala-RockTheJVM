@@ -10,7 +10,7 @@ class State(val root: Directory, val workingDirectory: Directory, val output: St
 
   //REMEMBER! Unit is analogous to "void" in Java! It returns nothing!
   def show: Unit = {
-    println(output)
+    print(output)
   }
 
   //let's BUILD A NEW STATE! woo!
